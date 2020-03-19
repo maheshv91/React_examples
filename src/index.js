@@ -2,52 +2,38 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
-class Employee extends React.Component{
-
-    constructor(props){
-        super(props);
-        console.log(this.props);
-    }
-    render(){
-        return <div>
-            <h2>Employee Details...</h2>
-            <p>
-                <label> Employee ID : <b>{this.props.Id}</b></label>
-            </p><p>
-                <label> Employee Name : <b>{this.props.Name}</b></label>
-            </p>
-            <p>
-                <label> Employee Location : <b>{this.props.Location}</b></label>
-            </p>
-            <p>
-                <label> Employee Salary : <b>{this.props.Salary}</b></label>
-            </p>
-
-            <Department DeptName={this.props.DeptName} DeptHead={this.props.DeptHead}></Department>
-
-        </div>
-    }
+var DisplayEmployeeInfo = (employee) => {
+    return <div>
+        <h1>Employee Details</h1>
+        <p>
+            <label>Employee ID : <b>{employee.Id}</b></label>
+        </p>
+        <p>
+            <label>Employee Name : <b>{employee.Name}</b></label>
+        </p>
+        <p>
+            <label>Employee Location : <b>{employee.Location}</b></label>
+        </p>
+        <p>
+            <label>Employee Salary : <b>{employee.Salary}</b></label>
+        </p>
+        <Department deptName={employee.deptName} headName={employee.headName}></Department>
+    </div>
 }
 
-class Department extends React.Component{
-    render(){
-        return <div>
-            <h2> Department Details</h2>
-            <p>
-    <label>Dept Name : <b>{this.props.DeptName}</b></label>
-            </p>
-            <p>
-    <label>Dept Head : <b> {this.props.DeptHead}</b></label>
-            </p>
-        </div>
-    }
+const Department = (deptInfo) => {
+    return <div>
+        <p>
+            Department Name : <b>{deptInfo.deptName}</b> 
+        </p>
+        <p>
+            Department Head : <b>{deptInfo.headName}</b> 
+        </p>
+    </div>
 }
 
-
-const element = <Employee Id="201" Name="Mahesh"
-                Location="Hyderabad" Salary="40000" 
-                DeptName="Pragin" DeptHead="Pragin Tech">
-
-</Employee>
+const element = <DisplayEmployeeInfo Id="101" Name="Mahesh" Location="Hyderabad" Salary="50000"
+deptName="Computers" headName="Software Engineer"></DisplayEmployeeInfo>
 
 ReactDOM.render(element,document.getElementById('root'));
+
